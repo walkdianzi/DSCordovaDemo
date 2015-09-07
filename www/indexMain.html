@@ -1,0 +1,302 @@
+<div class="title title-no-bottom index-top-main">
+    <a href="{{prefix + 'brandSele'}}" class="left">
+        <i class="iconzfl icon-pinpaijie"></i>
+    </a>
+    <h1 class="main">折疯了</h1>
+    <!--
+    <form ng-submit="typeSelech()" class="main index-selech-lay">
+        <i class="iconzfl icon-sousuo selech-icon"></i>
+        <input type="text" class="index-selech" placeholder="搜索商品或者品牌">
+    </form>
+     -->
+
+    <a href="javascript:;" class="right" ng-click="curtainClick()"><i class="iconzfl icon-search"></i></a>
+</div>
+<div ng-include="'common/topLoading.html'"></div>
+<div bottom-scroll="load()">
+<div class="carousel-lay" rn-carousel rn-carousel-index="posterListIndex" rn-carousel-auto-slide=6>
+    <ul class="carousel-course index-carousel" style="height: {{carouselHeight}}px;">
+        <li bindonce ng-repeat="item in indexData.posterList">
+            <a href="
+                {{item.relateType == 1 ? prefix + 'details&index&typeId&11&childId&' + item.shareId : ''}}
+                {{item.relateType == 2 ? prefix + 'typeList&brand&index&'+ item.brandId +'&22' : ''}}
+                {{item.relateType == 3 ? item.h5Url : ''}}
+                {{item.relateType == 4 ? prefix + 'USAdirect/USAlist&'+ item.firstCategory +'' : ''}}
+                {{item.relateType == 5 ? prefix + 'typeList&USAlist&index&'+ item.firstCategory +'&'+ item.secondCategory +'' : ''}}
+            ">
+                <img ng-src="{{item.imageUrl}}">
+            </a>
+        </li>
+    </ul>
+    <div class="carousel-page" rn-carousel-indicators ng-show="indexData.posterList.length > 1" slides="indexData.posterList" rn-carousel-index="posterListIndex"></div>
+</div>
+<div class="exemption-lay">
+    <div class="exemption">
+        <ul>
+            <li>
+                <i>包</i>
+                <p>包关税</p>
+            </li>
+            <li class="gf">
+                <i>官</i>
+                <p>官方直发</p>
+            </li>
+            <li class="zp">
+                <i>正</i>
+                <p>正品保障</p>
+            </li>
+            <li class="wl">
+                <i>物</i>
+                <p>物流跟踪</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="new-pop-list" ng-if="indexData.newPeopleList.length > 0">
+    <div class="index-title">
+        <span class="title-main">新人专享商品</span>
+        <span class="title-text">仅限新人首次下单每日<em>8</em>点更新</span>
+    </div>
+    <div class="carousel-lay" rn-carousel-index="newPeopleListIndex" rn-carousel rn-carousel-auto-slide=4>
+        <ul class="carousel-course index-carousel">
+            <li bindonce ng-repeat="item in indexData.newPeopleList" class="pop-main">
+                <a  href="{{prefix + 'details&index&typeId&11&childId&' + item.shareId}}" class="index-carousel-main">
+                    <div class="pic-lay">
+                        <div class="pic">
+                            <img ng-src="{{item.itemImgUrl}}">
+                        </div>
+                    </div>
+                    <div class="pop-text">
+                        <h4 class="text-title">{{item.itemTitle}}</h4>
+                        <p>
+                            新人专享价:
+                            <span class="price">￥{{item.itemCurPrice}}</span>
+                            <s>￥{{item.itemOriPrice}}</s>
+                        </p>
+                        <p class="text-bottom">今日剩余:{{item.stock}}件</p>
+                    </div>
+                    <span  class="ck">点击查看</span>
+                </a>
+            </li>
+        </ul>
+        <div class="carousel-page" rn-carousel-indicators ng-show="indexData.newPeopleList.length > 1" slides="indexData.newPeopleList" rn-carousel-index="newPeopleListIndex"></div>
+    </div>
+</div>
+<div class="time-discount" ng-if="indexData.discountList.length > 0">
+    <div class="index-title">
+        <span class="title-main">官网限时折扣</span>
+    </div>
+    <ul>
+        <li bindonce ng-repeat="item in indexData.discountList">
+            <a  href="{{prefix + 'details&index&typeId&11&childId&' + item.shareId}}">
+                <div class="discount-img">
+                    <img ng-src="{{item.itemImgUrl}}">
+                    <div class="countdown" ng-if="item.showCountDown">
+                        <div class="bj"></div>
+                        <span countdown countdown-data="item.endTime">正在计算剩余时间</span>
+                    </div>
+                </div>
+                <div class="discount-main">
+                    <h4 class="discount-title">{{item.itemTitle}}</h4>
+                    <div class="discount-info">
+                        <span>￥{{item.itemCurPrice}}</span>
+                        <span class="discount-num" ng-if="!!item.discount">{{item.discount}} 折</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="boutique">
+    <div class="index-title">
+        <span class="title-main">精品折扣</span>
+        <span class="title-text">实时同步-知名品牌官网折扣</span>
+    </div>
+    <div class="boutique-main">
+        <div class="item">
+            <a class="main-left" href="{{prefix + 'typeList&discountType&index&1&22'}}">
+                <img src="img/on_fold.jpg">
+            </a>
+        </div>
+        <div class="item">
+            <div class="item-main">
+                <a href="{{prefix + 'typeList&discountType&index&2&22'}}">
+                    <img src="img/two_fold.jpg">
+                </a>
+            </div>
+            <div class="item-main">
+                <a href="{{prefix + 'typeList&discountType&index&3&22'}}">
+                    <img src="img/three_fold.jpg">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="subject">
+    <div class="index-title">
+        <span class="title-main">主题馆</span>
+        <span class="title-text">众多商品任你挑选</span>
+    </div>
+    <div class="subject-main">
+        <ul>
+            <li>
+                <a href="{{prefix}}USAdirect/USAlist&4">
+                    <img src="img/subject_1.png">
+                </a>
+            </li>
+            <li>
+                <a href="{{prefix}}USAdirect/USAlist&1">
+                    <img src="img/subject_2.png">
+                </a>
+            </li>
+            <li>
+                <a href="{{prefix}}USAdirect/USAlist&5">
+                    <img src="img/subject_3.png">
+                </a>
+            </li>
+            <li>
+                <a href="{{prefix}}USAdirect/USAlist&9">
+                    <img src="img/subject_4.png">
+                </a>
+            </li>
+        </ul>
+        <div class="subject-type">
+            <a href="{{prefix}}USAdirect/USAlist&3">
+                <i class="iconzfl icon-hufupineps" style="color: rgb(242,203,22);"></i>
+                <p>护肤</p>
+            </a>
+            <a href="{{prefix}}USAdirect/USAlist&10">
+                <i class="iconzfl icon-muyin" style="color: rgb(255,84,181);"></i>
+                <p>母婴</p>
+            </a>
+            <a href="{{prefix}}USAdirect/USAlist&12">
+                <i class="iconzfl icon-baojian" style="color: rgb(255,156,0);"></i>
+                <p>保健</p>
+            </a>
+            <a href="{{prefix}}USAdirect/USAlist&7">
+                <i class="iconzfl icon-peishi" style="color: rgb(35,194,204);"></i>
+                <p>配饰</p>
+            </a>
+
+            <a href="{{prefix}}USAdirect/USAlist&2">
+                <i class="iconzfl icon-nvxie" style="color: rgb(255,84,181);"></i>
+                <p>女鞋</p>
+            </a>
+            <a href="{{prefix}}USAdirect/USAlist&8">
+                <i class="iconzfl icon-nanzhuang" style="color: rgb(25,202,196);"></i>
+                <p>男装</p>
+            </a>
+            <a href="{{prefix}}USAdirect/USAlist&11">
+                <i class="iconzfl icon-tongzhuang" style="color: rgb(245,208,34);"></i>
+                <p>童装</p>
+            </a>
+            <a href="{{prefix}}USAdirect/USAlist&6">
+                <i class="iconzfl icon-nvzhuang" style="color: rgb(230,78,207);"></i>
+                <p>内衣</p>
+            </a>
+
+            <a href="{{prefix}}USAdirect/USAlist&13">
+                <i class="iconzfl icon-shuma" style="color: rgb(45,149,255);"></i>
+                <p>数码</p>
+            </a>
+            <a href="{{prefix}}USAdirect/USAlist&14">
+                <i class="iconzfl icon-jiajushenghuo" style="color: rgb(133,120,255);"></i>
+                <p>家居</p>
+            </a>
+            <a href="{{prefix}}USAdirect/USAlist&15">
+                <i class="iconzfl icon-huwai" style="color: rgb(90,206,55);"></i>
+                <p>户外</p>
+            </a>
+            <a href="{{prefix}}typeList&USAlist&index&4&3">
+                <i class="iconzfl icon-kouhong" style="color: rgb(255,37,119);"></i>
+                <p>口红</p>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="index-brand">
+    <div class="index-title">
+        <span class="title-main">品牌街</span>
+        <span class="title-text">100多个美国知名品牌</span>
+    </div>
+    <ul>
+        <li bindonce ng-repeat="item in indexData.brandList">
+            <a href="{{prefix + 'typeList&brand&index&' + item.brandId + '&22'}}">
+                <img ng-src="{{item.brandImg}}">
+            </a>
+        </li>
+    </ul>
+    <div class="brand-bottom">
+        <a href="{{prefix}}brandSele" class="more">更多推荐</a>
+    </div>
+</div>
+<div class="htlist index-htlist">
+    <div class="index-title">
+        <span class="title-main">全球精选</span>
+    </div>
+    <ul>
+        <li bindonce ng-repeat="item in listLeft track by $index">
+            <a class="item my-item" href="{{prefix + 'details&index&typeId&11&childId&' + item.shareId}}">
+                <div class="list-out-lay">
+                    <img lazy-img="{{item.itemImgUrl}}"  height="{{item.imgInnerHeight}}px;">
+                    <div class="list-out" ng-if="item.soldOut">
+                        <div class="bj"></div>
+                        <h1>已售罄</h1>
+                    </div>
+                </div>
+                <div class="main">
+                    <h4>{{item.itemTitle}}</h4>
+                    <div class="price">
+                        <span class="left">￥{{item.itemCurPrice}}</span>
+                        <span class="right" ng-if="!!item.discount">{{item.discount}} 折</span>
+                    </div>
+                    <p><i class="iconzfl icon-qudaotubiao"></i>{{item.shopName}}</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <ul class="tow-list">
+        <li bindonce ng-repeat="item in listRight track by $index">
+            <a class="item my-item" href="{{prefix + 'details&index&typeId&11&childId&' + item.shareId}}">
+                <div class="list-out-lay">
+                    <img lazy-img="{{item.itemImgUrl}}" height="{{item.imgInnerHeight}}px;">
+                    <div class="list-out" ng-if="item.soldOut">
+                        <div class="bj"></div>
+                        <h1>已售罄</h1>
+                    </div>
+                </div>
+                <div class="main">
+                    <h4>{{item.itemTitle}}</h4>
+                    <div class="price">
+                        <span class="left">￥{{item.itemCurPrice}}</span>
+                        <span class="right" ng-if="!!item.discount">{{item.discount}} 折</span>
+                    </div>
+                    <p><i class="iconzfl icon-qudaotubiao"></i>{{item.shopName}}</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <div ng-include="'common/loading.html'"></div>
+</div>
+</div>
+
+<div class="curtain-lay index-curtain {{curtain ? 'curtain-show' : ''}}">
+    <div class="curtain-bg"></div>
+    <div class="curtain-main">
+        <form ng-submit="typeSearch()" class="main index-search-lay">
+            <div class="index-search">
+                <i class="iconzfl icon-sousuo search-icon"></i>
+                <div class="search-main">
+                    <input type="text" class="search-input" placeholder="搜索商品或者品牌">
+                </div>
+            </div>
+            <span class="close" ng-click="curtainClick()">取消</span>
+        </form>
+        <div class="index-curtain-search">
+            <div class="index-search-title">最近搜索</div>
+            <div class="index-search-main">
+                <a href="{{prefix + 'typeList&keyword&index&'+ item +'&22'}}" bindonce ng-repeat="item in historySearch track by $index">{{item}}</a>
+            </div>
+        </div>
+    </div>
+</div>

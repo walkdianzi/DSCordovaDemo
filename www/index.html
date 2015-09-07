@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="mainController" class="{{loading ? 'load-true' : ''}} {{bodyMaxHeight ? 'body-max-height' : ''}}" style="{{bodyMaxHeight ? 'height:' + bodyInfo.height + 'px' : ''}}">
+<head>
+    <meta charset="utf-8"/>
+    <title>折疯了</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="initial-scale=1, width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1, user-scalable=no" media="(device-height: 568px)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="full-screen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <meta name="description" content="原来国外这么便宜！100%正品保障，抢先下载还能领券哦！" />
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="css/all.min.css?v=1.376"/>
+    <script src="js/app.all.min.js?v=1.376"></script>
+
+</head>
+<body style="{{bodyMaxHeight ? 'height:' + bodyInfo.height + 'px' : 'min-height:' + bodyInfo.height + 'px'}}">
+<div class="app">
+    <div ui-view="appState"></div>
+
+    <div class="fix-bottom" ng-if="indexTab">
+        <div class="fix-bottom-main">
+            <a href="{{prefix + 'index'}}" class="{{homeTabIndex == 0 ? 'active' : ''}}"><i class="iconzfl icon-shouye"></i><p>首页</p></a>
+            <a href="{{prefix + 'type'}}" class="{{homeTabIndex == 1 ? 'active' : ''}}"><i class="iconzfl icon-category"></i><p>分类搜索</p></a>
+            <a href="{{prefix + 'USAdirect/USAlist&4'}}" class="{{homeTabIndex == 2 ? 'active' : ''}}"><i class="iconzfl icon-icon7"></i><p>海外购</p></a>
+            <a href="{{prefix + 'shopCart'}}" class="{{homeTabIndex == 3 ? 'active' : ''}}"><i class="iconzfl icon-gouwuche"><span ng-show="shopCartLength > 0">{{shopCartLength}}</span></i><p>购物车</p></a>
+            <a href="{{prefix + 'user/info'}}" class="{{homeTabIndex == 4 ? 'active' : ''}}"><i class="iconzfl icon-gerenzhongxin"></i><p>个人中心</p></a>
+        </div>
+    </div>
+
+    <div class="loader-inner ball-clip-rotate {{backLoading != '' ? backLoading : ''}}" ng-if="loading">
+        <div></div>
+    </div>
+</div>
+
+<div class="back-top {{!indexTab  ? 'back-bottom' : ''}}" back-top ng-show="backTop">
+    <div class="back-top-bj"></div>
+    <i class="iconzfl icon-shangjiantoua"></i>
+</div>
+
+</body>
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=47309441" charset="UTF-8"></script>
+</html>
+哈哈哈哈
